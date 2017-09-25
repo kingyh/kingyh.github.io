@@ -448,7 +448,39 @@
       
         
           
-            
+            <p>中间件</p>
+<p>中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。<br>每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。</p>
+<p>编写自己的中间件</p>
+<p>中间件工厂是可调用的，它接收一个可调用的get_response作为参数，返回一个中间件。一个中间件是可调用的，它接收request，返回response，就像view。<br>一个中间件可以是一个函数，像下面这样：</p>
+<p>  def simple_middleware(get_response):</p>
+<pre><code>#One-time configuration and initialization.
+def middleware(request):
+    #Code to be executed for each request before the view(and later middleware) are called.
+    response = get_response(request)
+    #Code to be executed for each request/response after the view is called.
+    return response
+return middlware
+</code></pre><p>或者可以写一个类，它的实例是可调用的，就像：</p>
+<p>  class SimpleMiddleware(object):<br>        def <strong>init</strong>(self, get_response):<br>            self.get_response = get_response</p>
+<pre><code>    #One-time configuration and initialization.
+def __call__(self, request):
+    #Code to be executed for each request before the view(and later middleware) are called.
+    response = self.get_response(request)
+    #Code to be executed for each request/response after the view is called.
+    return response
+</code></pre><p>这个调用的get_response是由Django提供的，可能是真正的视图(如果是最后一个中间件)或者是下一个中间件提供的。当前中间件无需关注它是什么只需要知道它代表了下一步将要发生什么。</p>
+<p>中间件可以存在于你Python路径的任何地方。<br><strong>init</strong>(get_response)<br>中间件工厂必须接收一个get_response参数。你可以初始化中间件的一些全局状态。时刻谨记一些警告：</p>
+<p>Django通过唯一的get_response参数，初始化你的中间，因此，你不能定义<strong>init</strong>()一些其他的参数；<br>不像<strong>call</strong>()方法会在每次请求的时候调用一次。<strong>init</strong>()方法只在服务器启动的时候调用一次。<br>标记中间件不被使用</p>
+<p>有时候在运行时决定一个中间件是否使用是很有用的。在这种情况下，你的中间件中的<strong>init</strong>方法可以抛出一个django.core.exceptions.MiddlewareNotUsed异常。Django会从中间件处理过程中移除这个中间件，并且当DEBUG为True的时候在django.request记录器中记录调试信息。</p>
+<p>激活中间件</p>
+<p>要激活一个中间件组件，需要把它添加到Django配置文件中的MIDDLEWARE_CLASSES列表。<br>在MIDDLEWARE_CLASSES中，每一个中间件组件用字符串的方式描述：一个完整的中间件工厂类或者函数所在的Python路径。例如，使用django-amdin startproject创建工程的时候生成的默认值：</p>
+<p>  MIDDLEWARE = [<br>  ‘django.middleware.security.SecurityMiddleware’,<br>  ‘django.contrib.sessions.middleware.SessionMiddleware’,<br>  ‘django.middleware.common.CommonMiddleware’,<br>  ‘django.middleware.csrf.CsrfViewMiddleware’,<br>  ‘django.contrib.auth.middleware.AuthenticationMiddleware’,<br>  ‘django.contrib.messages.middleware.MessageMiddleware’,<br>  ‘django.middleware.clickjacking.XFrameOptionsMiddleware’,<br>]<br>Django的程序中，中间件不是必需的—只要你喜欢， MIDDLWWARE_CLASSES可以为空—但是强烈推荐你至少使用CommonMiddleware。MIDDLEWARE_CLASSES中的顺序非常重要，因为一个中间件可能依赖于另外一个。例如，AuthenticationMiddleware在会话(session)中储存已认证的用户。所以它必须在SessionMiddleware之后运行。</p>
+<p>中间件的顺序和层次</p>
+<p>在请求阶段，调用视图之前，Django会按照MIDDLEWARE_CLASSES中定义的顺序自顶向下应用中间件。会用到两个钩子：</p>
+<p>process_request();<br>process_view();<br>在响应阶段，调用视图之后，中间件会按照相反的顺序应用，自底向上。会用到三个钩子：</p>
+<p>process_exception();<br>process_template_response();<br>process_response()</p>
+<p>image.png<br>你可以把它想象成一颗洋葱：每个中间件都是包裹视图的一层“皮”，而视图就是洋葱心。如果request通过洋葱的各层(每层通过调用get_response传递request到下一层)，传向中心的视图，response会原路返回穿过各层。<br>如果某一次决定短路直接返回response(不再调用get_response)，余下的各层和视图将不会见到任何request和response。</p>
+
           
         
       
