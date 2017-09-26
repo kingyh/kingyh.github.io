@@ -69,17 +69,17 @@
 
 
 
-<meta name="description" content="中间件 中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。 编写自己的中间件 中间件工厂是可调用的，它接收一个可调用的get_response作为参">
+<meta name="description" content="中间件中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。 编写自己的中间件中间件工厂是可调用的，它接收一个可调用的get_response作为参数，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="first blog">
-<meta property="og:url" content="http://yoursite.com/2017/09/24/first-blog/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/09/24/中间件概览/index.html">
 <meta property="og:site_name" content="小辉辉的博客">
-<meta property="og:description" content="中间件 中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。 编写自己的中间件 中间件工厂是可调用的，它接收一个可调用的get_response作为参">
+<meta property="og:description" content="中间件中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。 编写自己的中间件中间件工厂是可调用的，它接收一个可调用的get_response作为参数，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-25T09:28:37.000Z">
+<meta property="og:updated_time" content="2017-09-26T06:52:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="first blog">
-<meta name="twitter:description" content="中间件 中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。 编写自己的中间件 中间件工厂是可调用的，它接收一个可调用的get_response作为参">
+<meta name="twitter:description" content="中间件中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。 编写自己的中间件中间件工厂是可调用的，它接收一个可调用的get_response作为参数，">
 
 
 
@@ -109,7 +109,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/24/first-blog/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/24/中间件概览/"/>
 
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/first-blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/中间件概览/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王永辉">
@@ -319,10 +319,8 @@
       
 
       
-        <p>中间件</p>
-<p>中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。<br>每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。</p>
-<p>编写自己的中间件</p>
-<p>中间件工厂是可调用的，它接收一个可调用的get_response作为参数，返回一个中间件。一个中间件是可调用的，它接收request，返回response，就像view。<br>一个中间件可以是一个函数，像下面这样：</p>
+        <h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>中间件是一个钩子框架，它们可以介入Django的请求和响应处理过程。它是一个轻量级、底层的“插件”系统，用于在全局修改Django的输入和输出。<br>每个中间件组件负责完成某个特定的功能。例如，Django包含的一个中间件组件AuthenticationMiddleware，它使用会话将用户和请求关联起来。</p>
+<h1 id="编写自己的中间件"><a href="#编写自己的中间件" class="headerlink" title="编写自己的中间件"></a>编写自己的中间件</h1><p>中间件工厂是可调用的，它接收一个可调用的get_response作为参数，返回一个中间件。一个中间件是可调用的，它接收request，返回response，就像view。<br>一个中间件可以是一个函数，像下面这样：</p>
 <p>  def simple_middleware(get_response):</p>
 <pre><code>#One-time configuration and initialization.
 def middleware(request):
@@ -350,7 +348,7 @@ def __call__(self, request):
 <p>在请求阶段，调用视图之前，Django会按照MIDDLEWARE_CLASSES中定义的顺序自顶向下应用中间件。会用到两个钩子：</p>
 <p>process_request();<br>process_view();<br>在响应阶段，调用视图之后，中间件会按照相反的顺序应用，自底向上。会用到三个钩子：</p>
 <p>process_exception();<br>process_template_response();<br>process_response()</p>
-<p>image.png<br>你可以把它想象成一颗洋葱：每个中间件都是包裹视图的一层“皮”，而视图就是洋葱心。如果request通过洋葱的各层(每层通过调用get_response传递request到下一层)，传向中心的视图，response会原路返回穿过各层。<br>如果某一次决定短路直接返回response(不再调用get_response)，余下的各层和视图将不会见到任何request和response。</p>
+<p>！<a href="owsctaaei.bkt.clouddn.com">图片描述</a><br>你可以把它想象成一颗洋葱：每个中间件都是包裹视图的一层“皮”，而视图就是洋葱心。如果request通过洋葱的各层(每层通过调用get_response传递request到下一层)，传向中心的视图，response会原路返回穿过各层。<br>如果某一次决定短路直接返回response(不再调用get_response)，余下的各层和视图将不会见到任何request和response。</p>
 
       
     </div>
@@ -459,8 +457,17 @@ def __call__(self, request):
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -507,6 +514,22 @@ def __call__(self, request):
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件"><span class="nav-number">1.</span> <span class="nav-text">中间件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写自己的中间件"><span class="nav-number"></span> <span class="nav-text">编写自己的中间件</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
