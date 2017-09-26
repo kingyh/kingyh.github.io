@@ -377,7 +377,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/中间件概览/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/Middlware/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王永辉">
@@ -396,7 +396,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/24/中间件概览/" itemprop="url">first blog</a></h1>
+                <a class="post-title-link" href="/2017/09/24/Middlware/" itemprop="url">first blog</a></h1>
         
 
         <div class="post-meta">
@@ -477,7 +477,7 @@ def __call__(self, request):
 <p>在请求阶段，调用视图之前，Django会按照MIDDLEWARE_CLASSES中定义的顺序自顶向下应用中间件。会用到两个钩子：</p>
 <p>process_request();<br>process_view();<br>在响应阶段，调用视图之后，中间件会按照相反的顺序应用，自底向上。会用到三个钩子：</p>
 <p>process_exception();<br>process_template_response();<br>process_response()</p>
-<p>！<a href="owsctaaei.bkt.clouddn.com">图片描述</a><br>你可以把它想象成一颗洋葱：每个中间件都是包裹视图的一层“皮”，而视图就是洋葱心。如果request通过洋葱的各层(每层通过调用get_response传递request到下一层)，传向中心的视图，response会原路返回穿过各层。<br>如果某一次决定短路直接返回response(不再调用get_response)，余下的各层和视图将不会见到任何request和response。</p>
+<p>！<a href="http://owsctaaei.bkt.clouddn.com/middleware.png" target="_blank" rel="external">图片描述</a><br>你可以把它想象成一颗洋葱：每个中间件都是包裹视图的一层“皮”，而视图就是洋葱心。如果request通过洋葱的各层(每层通过调用get_response传递request到下一层)，传向中心的视图，response会原路返回穿过各层。<br>如果某一次决定短路直接返回response(不再调用get_response)，余下的各层和视图将不会见到任何request和response。</p>
 
           
         
