@@ -69,13 +69,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="小辉辉的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1. 生成器带有 yield 的函数在 Python 中被称之为 generator（生成器）, 它也是一种特殊的迭代器 2. Yield使用 yield 生成斐波那契數列12345678910111213141516171819202122232425262728293031323334def fab(max):     n, a, b = 0, 0, 1     while n &amp;lt; ma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python yield 使用浅析">
+<meta property="og:url" content="http://yoursite.com/2017/09/28/Python-yield-使用浅析/index.html">
 <meta property="og:site_name" content="小辉辉的博客">
+<meta property="og:description" content="1. 生成器带有 yield 的函数在 Python 中被称之为 generator（生成器）, 它也是一种特殊的迭代器 2. Yield使用 yield 生成斐波那契數列12345678910111213141516171819202122232425262728293031323334def fab(max):     n, a, b = 0, 0, 1     while n &amp;lt; ma">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-28T02:09:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小辉辉的博客">
+<meta name="twitter:title" content="Python yield 使用浅析">
+<meta name="twitter:description" content="1. 生成器带有 yield 的函数在 Python 中被称之为 generator（生成器）, 它也是一种特殊的迭代器 2. Yield使用 yield 生成斐波那契數列12345678910111213141516171819202122232425262728293031323334def fab(max):     n, a, b = 0, 0, 1     while n &amp;lt; ma">
 
 
 
@@ -105,13 +109,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/28/Python-yield-使用浅析/"/>
 
 
 
 
 
-  <title>小辉辉的博客</title>
+  <title>Python yield 使用浅析 | 小辉辉的博客</title>
   
 
 
@@ -130,8 +134,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,137 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/28/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王永辉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小辉辉的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/28/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-28T09:53:45+08:00">
-                2017-09-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -394,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/28/Python-yield-使用浅析/" itemprop="url">Python yield 使用浅析</a></h1>
+          <h1 class="post-title" itemprop="name headline">Python yield 使用浅析</h1>
         
 
         <div class="post-meta">
@@ -446,9 +319,7 @@
       
 
       
-        
-          
-            <h1 id="1-生成器"><a href="#1-生成器" class="headerlink" title="1. 生成器"></a><strong>1. 生成器</strong></h1><p>带有 yield 的函数在 Python 中被称之为 generator（生成器）, 它也是一种特殊的迭代器</p>
+        <h1 id="1-生成器"><a href="#1-生成器" class="headerlink" title="1. 生成器"></a><strong>1. 生成器</strong></h1><p>带有 yield 的函数在 Python 中被称之为 generator（生成器）, 它也是一种特殊的迭代器</p>
 <h1 id="2-Yield"><a href="#2-Yield" class="headerlink" title="2. Yield"></a><strong>2. Yield</strong></h1><p>使用 yield 生成斐波那契數列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span><span class="params">(max)</span>:</span> </div><div class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span> </div><div class="line">    <span class="keyword">while</span> n &lt; max: </div><div class="line">        <span class="keyword">yield</span> b </div><div class="line">        <span class="comment"># print b </span></div><div class="line">        a, b = b, a + b </div><div class="line">        n = n + <span class="number">1</span> </div><div class="line"> </div><div class="line"><span class="string">'''</span></div><div class="line"><span class="string">for n in fab(5): </span></div><div class="line"><span class="string"><span class="meta">... </span>    print n </span></div><div class="line"><span class="string"><span class="meta">... </span></span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。</span></div><div class="line"><span class="string">也可以手动调用 fab(5) 的 next() 方法（因为 fab(5) 是一个 generator 对象，该对象具有 next() 方法），这样我们就可以更清楚地看到 fab 的执行流程：</span></div><div class="line"><span class="string">清单 6. 执行流程</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">f = fab(5) </span></div><div class="line"><span class="string">f.next() </span></div><div class="line"><span class="string">1 </span></div><div class="line"><span class="string">f.next() </span></div><div class="line"><span class="string">1 </span></div><div class="line"><span class="string">f.next() </span></div><div class="line"><span class="string">2 </span></div><div class="line"><span class="string">f.next() </span></div><div class="line"><span class="string">3 </span></div><div class="line"><span class="string">f.next() </span></div><div class="line"><span class="string">5 </span></div><div class="line"><span class="string">f.next() </span></div><div class="line"><span class="string">Traceback (most recent call last): </span></div><div class="line"><span class="string"> File "&lt;stdin&gt;", line 1, in &lt;module&gt; </span></div><div class="line"><span class="string">StopIteration</span></div></pre></td></tr></table></figure></p>
 <p>当函数执行结束时，generator 自动抛出 StopIteration 异常，表示迭代完成。在 for 循环里，无需处理 StopIteration 异常，循环会正常结束。<br>我们可以得出以下结论：</p>
 <h4 id="一个带有-yield-的函数就是一个-generator，它和普通函数不同，生成一个-generator-看起来像函数调用，但不会执行任何函数代码，直到对其调用-next-（在-for-循环中会自动调用-next-）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个-yield-语句就会中断，并返回一个迭代值，下次执行时从-yield-的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被-yield-中断了数次，每次中断都会通过-yield-返回当前的迭代值。"><a href="#一个带有-yield-的函数就是一个-generator，它和普通函数不同，生成一个-generator-看起来像函数调用，但不会执行任何函数代码，直到对其调用-next-（在-for-循环中会自动调用-next-）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个-yield-语句就会中断，并返回一个迭代值，下次执行时从-yield-的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被-yield-中断了数次，每次中断都会通过-yield-返回当前的迭代值。" class="headerlink" title="一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。"></a>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。</h4><h4 id="yield-的好处是显而易见的，把一个函数改写为一个-generator-就获得了迭代能力，比起用类的实例保存状态来计算下一个-next-的值，不仅代码简洁，而且执行流程异常清晰。"><a href="#yield-的好处是显而易见的，把一个函数改写为一个-generator-就获得了迭代能力，比起用类的实例保存状态来计算下一个-next-的值，不仅代码简洁，而且执行流程异常清晰。" class="headerlink" title="yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。"></a>yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。</h4><p>如何判断一个函数是否是一个特殊的 generator 函数？可以利用 <strong>isgeneratorfunction</strong> 判断：<br>清单 7. 使用 isgeneratorfunction 判断<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> inspect <span class="keyword">import</span> isgeneratorfunction </div><div class="line">isgeneratorfunction(fab) </div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure></p>
@@ -457,8 +328,6 @@
 <h1 id="3-return-的作用"><a href="#3-return-的作用" class="headerlink" title="3. return 的作用"></a><strong>3. return 的作用</strong></h1><p>在一个 generator function 中，如果没有 return，则默认执行至函数完毕，如果在执行过程中 return，则直接抛出 StopIteration 终止迭代。</p>
 <h1 id="4-另一个例子"><a href="#4-另一个例子" class="headerlink" title="4. 另一个例子"></a><strong>4. 另一个例子</strong></h1><p>另一个 yield 的例子来源于文件读取。如果直接对文件对象调用 read() 方法，会导致不可预测的内存占用。好的方法是利用固定长度的缓冲区来不断读取文件内容。通过 yield，我们不再需要编写读文件的迭代类，就可以轻松实现文件读取：<br>清单 9. 另一个 yield 的例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_file</span><span class="params">(fpath)</span>:</span> </div><div class="line">   BLOCK_SIZE = <span class="number">1024</span> </div><div class="line">   <span class="keyword">with</span> open(fpath, <span class="string">'rb'</span>) <span class="keyword">as</span> f: </div><div class="line">       <span class="keyword">while</span> <span class="keyword">True</span>: </div><div class="line">           block = f.read(BLOCK_SIZE) </div><div class="line">           <span class="keyword">if</span> block: </div><div class="line">               <span class="keyword">yield</span> block </div><div class="line">           <span class="keyword">else</span>: </div><div class="line">               <span class="keyword">return</span></div></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -468,6 +337,30 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/erweima.png" alt="王永辉 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -475,180 +368,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/26/Middleware/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="王永辉">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/logo.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小辉辉的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/26/Middleware/" itemprop="url">Middleware</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T15:07:04+08:00">
-                2017-09-26
-              </time>
+              <a href="/2017/09/26/Middleware/" rel="next" title="Middleware">
+                <i class="fa fa-chevron-left"></i> Middleware
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2017/09/28/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h1><p>中间件是一个介入Django的请求和响应的处理过程中的钩子框架。它是一个轻量级，底层的“插件”系统，用于在全局修改Django的输入或输出。</p>
-<p>中间件组件责任处理某些特殊的功能。例如，Django包含一个中间件组件，AuthenticationMiddleware ，使用会话将用户和请求关联。</p>
-<p>这篇文档讲解了中间件如何工作，如何激活中间件，以及如何编写自己的中间件。Django集成了一些内置的中间件可以直接开箱即用。它们被归档在 内置中间件参考.</p>
-<h1 id="激活中间件"><a href="#激活中间件" class="headerlink" title="激活中间件"></a>激活中间件</h1><p>要激活一个中间件组件，需要把它添加到你Django配置文件中的MIDDLEWARE_CLASSES 列表中。</p>
-<p>在MIDDLEWARE_CLASSES中，每一个中间件组件用字符串的方式描述：一个完整的Python全路径加上中间件的类名称。例如，使用 django-admin startproject创建工程的时候生成的默认值：</p>
-<p>MIDDLEWARE_CLASSES = (<br>    ‘django.contrib.sessions.middleware.SessionMiddleware’,<br>    ‘django.middleware.common.CommonMiddleware’,<br>    ‘django.middleware.csrf.CsrfViewMiddleware’,<br>    ‘django.contrib.auth.middleware.AuthenticationMiddleware’,<br>    ‘django.contrib.auth.middleware.SessionAuthenticationMiddleware’,<br>    ‘django.contrib.messages.middleware.MessageMiddleware’,<br>    ‘django.middleware.clickjacking.XFrameOptionsMiddleware’,<br>    ‘django.middleware.security.SecurityMiddleware’,<br>)<br>Django的程序中，中间件不是必需的 — 只要你喜欢，MIDDLEWARE_CLASSES可以为空 — 但是强烈推荐你至少使用CommonMiddleware。</p>
-<p>MIDDLEWARE_CLASSES中的顺序非常重要，因为一个中间件可能依赖于另外一个。例如，AuthenticationMiddleware在会话中储存已认证的用户。所以它必须在SessionMiddleware之后运行。一些关于Django中间件类的顺序的常见提示，请见Middleware ordering。</p>
-<h1 id="钩子和应用顺序"><a href="#钩子和应用顺序" class="headerlink" title="钩子和应用顺序"></a>钩子和应用顺序</h1><p>在请求阶段中，调用视图之前，Django会按照MIDDLEWARE_CLASSES中定义的顺序自顶向下应用中间件。会用到两个钩子：</p>
-<p>process_request()<br>process_view()<br>在响应阶段中，调用视图之后，中间件会按照相反的顺序应用，自底向上。会用到三个钩子：</p>
-<p>process_exception() （仅当视图抛出异常的时候）<br>process_template_response() （仅用于模板响应）<br>process_response()</p>
-<p><img src="http://owsctaaei.bkt.clouddn.com/middleware.png" alt="middle"></p>
-<p>如果你愿意的话，你可以把它想象成一颗洋葱：每个中间件都是包裹视图的一层“皮”。</p>
-<p>每个钩子的行为接下来会描述。</p>
-<h1 id="编写自己的中间件"><a href="#编写自己的中间件" class="headerlink" title="编写自己的中间件"></a>编写自己的中间件</h1><p>编写自己的中间件很容易的。每个中间件组件是一个单独的Python的class，你可以定一个或多个下面的这些方法：</p>
-<h2 id="process-request"><a href="#process-request" class="headerlink" title="process_request"></a>process_request</h2><p>process_request(request)</p>
-<p>request是一个HttpRequest 对象。</p>
-<p>在Django决定执行哪个视图(view)之前，process_request()会被每次请求调用。</p>
-<p>它应该返回一个None 或一个HttpResponse对象。如果返回 None, Django会继续处理这个请求，执行其他process_request()中间件，然后process_view()中间件显示对应的视图。如果它返回一个HttpResponse对象，Django便不再会去调用其他的请求(request), 视图(view)或其他中间件，或对应的视图；处理HttpResponse的中间件会处理任何返回的响应(response)。</p>
-<h2 id="process-view"><a href="#process-view" class="headerlink" title="process_view"></a>process_view</h2><p>process_view(request, view_func, view_args, view_kwargs)</p>
-<p>request是一个HttpRequest对象。view_func是 Django会调用的一个Python的函数。(它确实是一个函数对象，不是函数的字符名称。) view_args是一个会被传递到视图的位置参数列表，而view_kwargs 是一个会被传递到视图的关键字参数字典。 view_args和 view_kwargs 都不包括第一个视图参数(request)。</p>
-<p>process_view()会在Django调用视图(view)之前被调用。</p>
-<p>它将返回None 或一个HttpResponse 对象。如果返回 None，将会继续处理这个请求，执行其他的process_view() 中间件，然后显示对应的视图。如果返回HttpResponse对象，Django就不再会去调用其他的视图（view），异常中间件（exception middleware）或对应的视图 ；它会把响应中间件应用到HttpResponse上，并返回结果。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>在中间件内部，从process_request或者process_view方法中访问request.POST或者request.REQUEST将会阻碍该中间 件之后的所有视图无法修改request的上传处理程序， 一般情况要避免这样使用。</p>
-<p>类CsrfViewMiddleware可以被认为是个例外 ，因为它提供了csrf_exempt() 和 csrf_protect()两个允许视图来精确控制 在哪个点需要开启CSRF验证。</p>
-<h2 id="process-template-response"><a href="#process-template-response" class="headerlink" title="process_template_response"></a>process_template_response</h2><p>process_template_response(request, response)</p>
-<p>request是一个HttpRequest对象。response是一个TemplateResponse对象（或等价的对象），由Django视图或者中间件返回。</p>
-<p>如果响应的实例有render()方法，process_template_response()在视图刚好执行完毕之后被调用，这表明了它是一个TemplateResponse对象（或等价的对象）。</p>
-<p>这个方法必须返回一个实现了render方法的响应对象。它可以修改给定的response对象，通过修改 response.template_name和response.context_data或者它可以创建一个全新的 TemplateResponse或等价的对象。</p>
-<p>你不需要显式渲染响应 —— 一旦所有的模板响应中间件被调用，响应会自动被渲染。</p>
-<p>在一个响应的处理期间，中间件以相反的顺序运行，这包括process_template_response()。</p>
-<h2 id="process-response"><a href="#process-response" class="headerlink" title="process_response"></a>process_response</h2><p>process_response(request, response)</p>
-<p>request是一个HttpRequest对象。response是Django视图或者中间件返回的HttpResponse或者StreamingHttpResponse对象。</p>
-<p>process_response()在所有响应返回浏览器之前被调用。</p>
-<p>这个方法必须返回HttpResponse或者StreamingHttpResponse对象。它可以改变已有的response，或者创建并返回新的HttpResponse或StreamingHttpResponse对象。</p>
-<p>不像 process_request()和process_view()方法，即使同一个中间件类中的process_request()和process_view()方法会因为前面的一个中间件返回HttpResponse而被跳过，process_response()方法总是会被调用。特别是，这意味着你的process_response()方法不能依赖于process_request()方法中的设置。</p>
-<p>最后，记住在响应阶段中，中间件以相反的顺序被应用，自底向上。意思是定义在MIDDLEWARE_CLASSES最底下的类会最先被运行。</p>
-<h1 id="处理流式响应"><a href="#处理流式响应" class="headerlink" title="处理流式响应"></a>处理流式响应</h1><p>不像HttpResponse，StreamingHttpResponse并没有content属性。所以，中间件再也不能假设所有响应都带有content属性。如果它们需要访问内容，他们必须测试是否为流式响应，并相应地调整自己的行为。</p>
-<p>if response.streaming:<br>    response.streaming_content = wrap_streaming_content(response.streaming_content)<br>else:<br>    response.content = alter_content(response.content)<br>注意</p>
-<p>我们需要假设streaming_content可能会大到在内存中无法容纳。响应中间件可能会把它封装在新的生成器中，但是一定不要销毁它。封装一般会实现成这样：</p>
-<p>def wrap_streaming_content(content):<br>    for chunk in content:<br>        yield alter_content(chunk)<br>process_exception</p>
-<h2 id="process-exception-request-exception"><a href="#process-exception-request-exception" class="headerlink" title="process_exception(request, exception)"></a>process_exception(request, exception)</h2><p>request是一个HttpRequest对象。exception是一个被视图中的方法抛出来的 Exception对象。</p>
-<p>当一个视图抛出异常时，Django会调用process_exception()来处理。process_exception()应该返回一个None 或者一个HttpResponse对象。如果它返回一个HttpResponse对象，模型响应和响应中间件会被应用，响应结果会返回给浏览器。Otherwise, default exception handling kicks in.</p>
-<p>再次提醒，在处理响应期间，中间件的执行顺序是倒序执行的，这包括process_exception。如果一个异常处理的中间件返回了一个响应，那这个中间件上面的中间件都将不会被调用。</p>
-<h2 id="init"><a href="#init" class="headerlink" title="init"></a><strong>init</strong></h2><p>大多数的中间件类都不需要一个初始化方法，因为中间件的类定义仅仅是为process_*提供一个占位符。如果你确实需要一个全局的状态那就可以通过<strong>init</strong>来加载。然后要铭记如下两个警告：</p>
-<p>Django初始化你的中间件无需任何参数，因此不要定义一个有参数的<strong>init</strong>方法。<br>不像process_*每次请求到达都要调用<strong>init</strong>只会被调用一次，就是在Web服务启动的时候。</p>
-<h1 id="标记中间件不被使用"><a href="#标记中间件不被使用" class="headerlink" title="标记中间件不被使用"></a>标记中间件不被使用</h1><p>有时在运行时决定是否一个中间件需要被加载是很有用的。 在这种情况下，你的中间件中的 <strong>init</strong>方法可以抛出一个django.core.exceptions.MiddlewareNotUsed异常。Django会从中间件处理过程中移除这部分中间件，并且当DEBUG为True的时候在django.request记录器中记录调试信息。</p>
-<p>1.8中的修改：</p>
-<p>之前 MiddlewareNotUsed异常不会被记录。</p>
-<h1 id="指导准则"><a href="#指导准则" class="headerlink" title="指导准则"></a>指导准则</h1><p>中间件的类不能是任何类的子类。<br>中间件可以存在与你Python路径中的任何位置。 Django所关心的只是被包含在MIDDLEWARE_CLASSES中的配置。<br>将Django’s available middleware作为例子随便看看。<br>如果你认为你写的中间件组建可能会对其他人有用，那就把它共享到社区！ 让我们知道它，我们会考虑把它添加到Django中。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -658,10 +403,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -669,6 +415,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -689,8 +439,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -737,6 +496,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-生成器"><span class="nav-number">1.</span> <span class="nav-text">1. 生成器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Yield"><span class="nav-number">2.</span> <span class="nav-text">2. Yield</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个带有-yield-的函数就是一个-generator，它和普通函数不同，生成一个-generator-看起来像函数调用，但不会执行任何函数代码，直到对其调用-next-（在-for-循环中会自动调用-next-）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个-yield-语句就会中断，并返回一个迭代值，下次执行时从-yield-的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被-yield-中断了数次，每次中断都会通过-yield-返回当前的迭代值。"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yield-的好处是显而易见的，把一个函数改写为一个-generator-就获得了迭代能力，比起用类的实例保存状态来计算下一个-next-的值，不仅代码简洁，而且执行流程异常清晰。"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">yield 的好处是显而易见的，把一个函数改写为一个 generator 就获得了迭代能力，比起用类的实例保存状态来计算下一个 next() 的值，不仅代码简洁，而且执行流程异常清晰。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-return-的作用"><span class="nav-number">3.</span> <span class="nav-text">3. return 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-另一个例子"><span class="nav-number">4.</span> <span class="nav-text">4. 另一个例子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
