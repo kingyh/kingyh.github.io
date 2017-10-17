@@ -69,14 +69,17 @@
 
 
 
+<meta name="description" content="生产者与消费者模式1. 队先进先出 2. 栈先进后出 Python的Queue模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列PriorityQueue。这些队列都实现了锁原语（可以理解为原子操作，即要么不做，要么就做完），能够在多线程中直接使用。可以使用队列来实现线程间的同步。 用FIFO队列实现上述生产者与消">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生产者消费者模式">
+<meta property="og:title" content="生产者消费者模式">
 <meta property="og:url" content="http://yoursite.com/2017/09/28/生产者消费者模式/index.html">
 <meta property="og:site_name" content="小辉辉的博客">
+<meta property="og:description" content="生产者与消费者模式1. 队先进先出 2. 栈先进后出 Python的Queue模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列PriorityQueue。这些队列都实现了锁原语（可以理解为原子操作，即要么不做，要么就做完），能够在多线程中直接使用。可以使用队列来实现线程间的同步。 用FIFO队列实现上述生产者与消">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-28T13:16:40.000Z">
+<meta property="og:updated_time" content="2017-10-17T06:39:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="生产者消费者模式">
+<meta name="twitter:title" content="生产者消费者模式">
+<meta name="twitter:description" content="生产者与消费者模式1. 队先进先出 2. 栈先进后出 Python的Queue模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列PriorityQueue。这些队列都实现了锁原语（可以理解为原子操作，即要么不做，要么就做完），能够在多线程中直接使用。可以使用队列来实现线程间的同步。 用FIFO队列实现上述生产者与消">
 
 
 
@@ -112,7 +115,7 @@
 
 
 
-  <title>生产者消费者模式 | 小辉辉的博客</title>
+  <title>生产者消费者模式 | 小辉辉的博客</title>
   
 
 
@@ -266,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">生产者消费者模式</h1>
+          <h1 class="post-title" itemprop="name headline">生产者消费者模式</h1>
         
 
         <div class="post-meta">
@@ -316,7 +319,15 @@
       
 
       
-        
+        <h1 id="生产者与消费者模式"><a href="#生产者与消费者模式" class="headerlink" title="生产者与消费者模式"></a>生产者与消费者模式</h1><h2 id="1-队"><a href="#1-队" class="headerlink" title="1. 队"></a>1. 队</h2><p><strong>先进先出</strong></p>
+<h2 id="2-栈"><a href="#2-栈" class="headerlink" title="2. 栈"></a>2. 栈</h2><p><strong>先进后出</strong></p>
+<p>Python的Queue模块中提供了同步的、线程安全的队列类，包括FIFO（先入先出)队列Queue，LIFO（后入先出）队列LifoQueue，和优先级队列PriorityQueue。这些队列都实现了锁原语（可以理解为原子操作，即要么不做，要么就做完），能够在多线程中直接使用。可以使用队列来实现线程间的同步。</p>
+<p>用FIFO队列实现上述生产者与消费者问题的代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#encoding=utf-8</span></div><div class="line"><span class="keyword">import</span> threading</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="comment">#python2中</span></div><div class="line"><span class="keyword">from</span> Queue <span class="keyword">import</span> Queue</div><div class="line"></div><div class="line"><span class="comment">#python3中</span></div><div class="line"><span class="comment"># from queue import Queue</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Producer</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">global</span> queue</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">if</span> queue.qsize() &lt; <span class="number">1000</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</div><div class="line">                    count = count +<span class="number">1</span></div><div class="line">                    msg = <span class="string">'生成产品'</span>+str(count)</div><div class="line">                    queue.put(msg)</div><div class="line">                    print(msg)</div><div class="line">            time.sleep(<span class="number">0.5</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Consumer</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">global</span> queue</div><div class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">            <span class="keyword">if</span> queue.qsize() &gt; <span class="number">100</span>:</div><div class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>):</div><div class="line">                    msg = self.name + <span class="string">'消费了 '</span>+queue.get()</div><div class="line">                    print(msg)</div><div class="line">            time.sleep(<span class="number">1</span>)</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    queue = Queue()</div><div class="line"></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">500</span>):</div><div class="line">        queue.put(<span class="string">'初始产品'</span>+str(i))</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>):</div><div class="line">        p = Producer()</div><div class="line">        p.start()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">        c = Consumer()</div><div class="line">        c.start()</div></pre></td></tr></table></figure></p>
+<h2 id="3-Queue的说明"><a href="#3-Queue的说明" class="headerlink" title="3. Queue的说明"></a>3. Queue的说明</h2><p>对于Queue，在多线程通信之间扮演重要的角色<br>添加数据到队列中，使用put()方法<br>从队列中取数据，使用get()方法<br>判断队列中是否还有数据，使用qsize()方法</p>
+<h2 id="4-生产者消费者模式的说明"><a href="#4-生产者消费者模式的说明" class="headerlink" title="4. 生产者消费者模式的说明"></a>4. 生产者消费者模式的说明</h2><p>为什么要使用生产者和消费者模式<br>在线程世界里，生产者就是生产数据的线程，消费者就是消费数据的线程。在多线程开发当中，如果生产者处理速度很快，而消费者处理速度很慢，那么生产者就必须等待消费者处理完，才能继续生产数据。同样的道理，如果消费者的处理能力大于生产者，那么消费者就必须等待生产者。为了解决这个问题于是引入了生产者和消费者模式。</p>
+<p>什么是生产者消费者模式<br>生产者消费者模式是通过一个<strong>容器</strong>来解决生产者和消费者的<strong>强耦合</strong>问题。生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不找生产者要数据，而是直接从阻塞队列里取，阻塞队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。</p>
+<p>这个阻塞队列就是用来给生产者和消费者<strong>解耦</strong>的。纵观大多数设计模式，都会找一个第三者出来进行解耦，</p>
+
       
     </div>
     
@@ -428,8 +439,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -476,6 +496,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#生产者与消费者模式"><span class="nav-number">1.</span> <span class="nav-text">生产者与消费者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-队"><span class="nav-number">1.1.</span> <span class="nav-text">1. 队</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-栈"><span class="nav-number">1.2.</span> <span class="nav-text">2. 栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Queue的说明"><span class="nav-number">1.3.</span> <span class="nav-text">3. Queue的说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-生产者消费者模式的说明"><span class="nav-number">1.4.</span> <span class="nav-text">4. 生产者消费者模式的说明</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
